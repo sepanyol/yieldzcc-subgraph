@@ -1,0 +1,51 @@
+enum StakingProtocolType {
+  Simple
+  CustomReward
+  TimeLock
+  ActionFees
+  OverTimeReward
+}
+
+type Token @entity(immutable: true) {
+  id: ID!
+  address: Bytes!
+  name: String!
+  symbol: String!
+  decimals: Int8!
+}
+
+type StakingProtocol @entity(immutable: true) {
+  id: ID!
+  address: Bytes!
+  type: StakingProtocolType!
+  deployer: Bytes!
+  owner: Bytes! 
+  stakingToken: Token!
+  rewardToken: Token!
+  stats: [StakingProtocolStats!]! @derivedFrom(field: "protocol")
+}
+
+type StakingProtocolStats @entity(immutable: false) {
+  id: ID!
+  staked: BigInt!
+  rewarded: BigInt!
+  claimed: BigInt!
+  protocol: StakingProtocol!
+}
+
+type RewardTick @entity(timeseries: true) {
+  id: Int8!
+  timestamp: Timestamp!
+  address: Bytes!
+  amount: BigInt!
+  staked: BigInt!
+  relative: BigDecimal!
+}
+
+type RewardTickAggregation @aggregation(intervals: ["hour", "day"], source: "RewardTick") {
+   id: Int8!
+   timestamp: Timestamp!
+   address: Bytes!
+   totalRelative: BigDecimal! @aggregate(fn: "sum", arg: "relative")
+   tickCounts: BigInt! @aggregate(fn: "count")
+}

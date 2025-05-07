@@ -1,0 +1,745 @@
+[
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__AddressZero",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__AmountZero",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__ClaimInvalid",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__EnablingInvalid",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__HasStakers",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__InjectRewardsInvalid",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__LockPeriodInvalid",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__NoRewards",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__NoStakers",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__NotFinished",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__NotStarted",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__RestakeInvalid",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__StartedAlready",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StakingOverTimeReward__WithdrawInvalid",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "Announced",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "Opened",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "Purged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "Started",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "totalRewards",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "rewardToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "lockPeriod",
+        "type": "uint64"
+      }
+    ],
+    "name": "UpdateConfig",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "acceptOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "announce",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_receiver",
+        "type": "address"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "claimRewards",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_claimAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_staker",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_minAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "deposit",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_depositAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "name": "enable",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_staker",
+        "type": "address"
+      }
+    ],
+    "name": "getPendingRewards",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "pendingRewards",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_staker",
+        "type": "address"
+      }
+    ],
+    "name": "getRewardsOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_rewards",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_staker",
+        "type": "address"
+      }
+    ],
+    "name": "getStakeOf",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint128",
+            "name": "amount",
+            "type": "uint128"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pending",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dividend",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IStakingBase.Stake",
+        "name": "_stake",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_limit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_offset",
+        "type": "uint256"
+      }
+    ],
+    "name": "getStakers",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "staker",
+            "type": "address"
+          },
+          {
+            "internalType": "uint128",
+            "name": "amount",
+            "type": "uint128"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pending",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dividend",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IStakingBase.StakersStake[]",
+        "name": "_stakers",
+        "type": "tuple[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_count",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getStakersCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_count",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getStatus",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bool",
+            "name": "isAnnounced",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isOpened",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isStarted",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isFinished",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPurgePossible",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct IStakingOverTimeReward.Status",
+        "name": "_status",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_stakingToken",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "args",
+        "type": "bytes"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_minAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "injectRewards",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_injectedAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lockPeriod",
+    "outputs": [
+      {
+        "internalType": "uint64",
+        "name": "",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "open",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paused",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pendingOwner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "purge",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "restake",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_restakeAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "rewardToken",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "rewarded",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "staked",
+    "outputs": [
+      {
+        "internalType": "uint128",
+        "name": "",
+        "type": "uint128"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "stakingToken",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "start",
+    "outputs": [
+      {
+        "internalType": "uint64",
+        "name": "",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint64",
+        "name": "",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "timeEnd",
+    "outputs": [
+      {
+        "internalType": "uint64",
+        "name": "",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "timeStart",
+    "outputs": [
+      {
+        "internalType": "uint64",
+        "name": "",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalClaimed",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalRewards",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "_args",
+        "type": "bytes"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "updateConfig",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_receiver",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_referrals",
+        "type": "address[]"
+      }
+    ],
+    "name": "withdraw",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_withdrawAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+]

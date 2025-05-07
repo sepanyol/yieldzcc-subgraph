@@ -1,0 +1,184 @@
+specVersion: 1.3.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Staking_Factory_Time_Lock
+    network: sonic
+    source:
+      address: "0x58Eb3b718152f5d41eafe413605923A23A286D92"
+      abi: StakingFactory
+      startBlock: 24260430
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - StakingProtocol
+      abis:
+        - name: StakingFactory
+          file: ./abis/StakingFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: StakingSimple
+          file: ./abis/staking-simple.abi.json
+      eventHandlers:
+        - event: Created(indexed address,indexed address,indexed address,uint256)
+          handler: handleNewProtocol
+      file: ./src/staking-factory.ts
+  - kind: ethereum
+    name: Staking_Factory_Simple
+    network: sonic
+    source:
+      address: "0xc91661d9cEA9B8db82Ea3331C58282ECD745054e"
+      abi: StakingFactory
+      startBlock: 24260430
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - StakingProtocol
+      abis:
+        - name: StakingFactory
+          file: ./abis/StakingFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: StakingSimple
+          file: ./abis/staking-simple.abi.json
+      eventHandlers:
+        - event: Created(indexed address,indexed address,indexed address,uint256)
+          handler: handleNewProtocol
+      file: ./src/staking-factory.ts
+  - kind: ethereum
+    name: Staking_Factory_Over_Time_Rewards
+    network: sonic
+    source:
+      address: "0xF6f4e7D85A348869DD055Bad98C476C3a1eaaAc5"
+      abi: StakingFactory
+      startBlock: 24260430
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - StakingProtocol
+      abis:
+        - name: StakingFactory
+          file: ./abis/StakingFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: StakingSimple
+          file: ./abis/staking-simple.abi.json
+      eventHandlers:
+        - event: Created(indexed address,indexed address,indexed address,uint256)
+          handler: handleNewProtocol
+      file: ./src/staking-factory.ts
+  - kind: ethereum
+    name: Staking_Factory_Custom_Reward
+    network: sonic
+    source:
+      address: "0x36712Af1af9b3e5037eFCe322188B895f3c49219"
+      abi: StakingFactory
+      startBlock: 24260430
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - StakingProtocol
+      abis:
+        - name: StakingFactory
+          file: ./abis/StakingFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: StakingSimple
+          file: ./abis/staking-simple.abi.json
+      eventHandlers:
+        - event: Created(indexed address,indexed address,indexed address,uint256)
+          handler: handleNewProtocol
+      file: ./src/staking-factory.ts
+  - kind: ethereum
+    name: Staking_Factory_Action_Fees
+    network: sonic
+    source:
+      address: "0xc7269a040609680bEd6e9b3bddf0fa2fA530881c"
+      abi: StakingFactory
+      startBlock: 24260430
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - StakingProtocol
+      abis:
+        - name: StakingFactory
+          file: ./abis/StakingFactory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: StakingSimple
+          file: ./abis/staking-simple.abi.json
+      eventHandlers:
+        - event: Created(indexed address,indexed address,indexed address,uint256)
+          handler: handleNewProtocol
+      file: ./src/staking-factory.ts
+templates:
+  - name: StakingContract
+    kind: ethereum/contract
+    network: sonic
+    source:
+      abi: StakingSimple
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      file: ./src/staking-protocol.ts
+      entities:
+        - StakingProtocol
+      abis:
+        - name: StakingEvents
+          file: ./abis/events.abi.json
+        - name: StakingSimple
+          file: ./abis/staking-simple.abi.json
+        - name: StakingActionFees
+          file: ./abis/staking-action-fees.abi.json
+        - name: StakingCustomReward
+          file: ./abis/staking-custom-reward.abi.json
+        - name: StakingOverTimeReward
+          file: ./abis/staking-over-time-reward.abi.json
+        - name: StakingTimeLock
+          file: ./abis/staking-time-lock.abi.json
+      eventHandlers:
+        - event: Deposit(indexed address,int256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,int256)
+          handler: handleWithdraw
+        - event: Claim(indexed address,uint256)
+          handler: handleClaim
+        - event: Restaked(indexed address,uint256)
+          handler: handleRestaked
+        - event: InjectRewards(indexed address,uint256,uint256,uint256)
+          handler: handleInjectRewards
+

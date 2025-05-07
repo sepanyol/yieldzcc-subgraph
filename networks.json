@@ -1,0 +1,24 @@
+{
+  "sonic": {
+    "Staking_Factory_Time_Lock": {
+      "address": "0x58Eb3b718152f5d41eafe413605923A23A286D92",
+      "startBlock": 24260430
+    },
+    "Staking_Factory_Simple": {
+      "address": "0xc91661d9cEA9B8db82Ea3331C58282ECD745054e",
+      "startBlock": 24260430
+    },
+    "Staking_Factory_Over_Time_Rewards": {
+      "address": "0xF6f4e7D85A348869DD055Bad98C476C3a1eaaAc5",
+      "startBlock": 24260430
+    },
+    "Staking_Factory_Custom_Reward": {
+      "address": "0x36712Af1af9b3e5037eFCe322188B895f3c49219",
+      "startBlock": 24260430
+    },
+    "Staking_Factory_Action_Fees": {
+      "address": "0xc7269a040609680bEd6e9b3bddf0fa2fA530881c",
+      "startBlock": 24260430
+    }
+  }
+}
