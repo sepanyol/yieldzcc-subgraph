@@ -6,6 +6,14 @@ enum StakingProtocolType {
   OverTimeReward
 }
 
+enum ProtocolActionType {
+  Deposit
+  Restake
+  Withdraw
+  Claim
+  Inject
+}
+
 type Token @entity(immutable: true) {
   id: ID!
   address: Bytes!
@@ -19,10 +27,12 @@ type StakingProtocol @entity(immutable: true) {
   address: Bytes!
   type: StakingProtocolType!
   deployer: Bytes!
-  owner: Bytes! 
+  owner: Bytes!
   stakingToken: Token!
   rewardToken: Token!
-  stats: [StakingProtocolStats!]! @derivedFrom(field: "protocol")
+  stats: StakingProtocolStats! @derivedFrom(field: "protocol")
+  stakes: [User!] @derivedFrom(field: "protocol")
+  actions: [ProtocolAction!] @derivedFrom(field: "protocol")
 }
 
 type StakingProtocolStats @entity(immutable: false) {
@@ -30,6 +40,26 @@ type StakingProtocolStats @entity(immutable: false) {
   staked: BigInt!
   rewarded: BigInt!
   claimed: BigInt!
+  stakers: BigInt!
+  protocol: StakingProtocol!
+}
+
+type User @entity(immutable: false) {
+  id: Bytes!
+  address: Bytes!
+  staked: BigInt!
+  claimed: BigInt!
+  active: Boolean!
+  protocol: StakingProtocol!
+}
+
+type ProtocolAction @entity(immutable: true) {
+  id: Bytes!
+  type: ProtocolActionType!
+  amount: BigInt!
+  token: Token!
+  user: User!
+  created: BigInt!
   protocol: StakingProtocol!
 }
 
@@ -42,10 +72,28 @@ type RewardTick @entity(timeseries: true) {
   relative: BigDecimal!
 }
 
-type RewardTickAggregation @aggregation(intervals: ["hour", "day"], source: "RewardTick") {
-   id: Int8!
-   timestamp: Timestamp!
-   address: Bytes!
-   totalRelative: BigDecimal! @aggregate(fn: "sum", arg: "relative")
-   tickCounts: BigInt! @aggregate(fn: "count")
+type RewardTickAggregation
+  @aggregation(intervals: ["hour", "day"], source: "RewardTick") {
+  id: Int8!
+  timestamp: Timestamp!
+  address: Bytes!
+  totalRelative: BigDecimal! @aggregate(fn: "sum", arg: "relative")
+  tickCounts: BigInt! @aggregate(fn: "count")
+}
+
+type HistoricalStats @entity(timeseries: true) {
+  id: Int8!
+  timestamp: Timestamp!
+  stakers: BigInt!
+  staked: BigInt!
+  protocol: StakingProtocol!
+}
+
+type HistoricalStatsAggregation
+  @aggregation(intervals: ["hour", "day"], source: "HistoricalStats") {
+  id: Int8!
+  timestamp: Timestamp!
+  protocol: StakingProtocol!
+  stakers: BigInt! @aggregate(fn: "max", arg: "stakers")
+  staked: BigInt! @aggregate(fn: "max", arg: "staked")
 }

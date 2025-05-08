@@ -24,6 +24,7 @@ export function handleNewProtocol(event: CreatedEvent): void {
     protocolStats.claimed = BigInt.fromI32(0);
     protocolStats.rewarded = BigInt.fromI32(0);
     protocolStats.staked = BigInt.fromI32(0);
+    protocolStats.stakers = BigInt.fromI32(0);
   }
 
   // fetch tokens
@@ -64,14 +65,15 @@ export function handleNewProtocol(event: CreatedEvent): void {
 
     // connect with stats
     protocolStats.protocol = protocol.id;
+    protocol.type = "Simple";
 
-    if (
-      event.address.equals(
-        Address.fromString("0xc91661d9cEA9B8db82Ea3331C58282ECD745054e")
-      )
-    ) {
-      protocol.type = "Simple";
-    }
+    // if (
+    //   event.address.equals(
+    //     Address.fromString("0xc91661d9cEA9B8db82Ea3331C58282ECD745054e")
+    //   )
+    // ) {
+    //   protocol.type = "Simple";
+    // }
 
     if (
       event.address.equals(
@@ -106,10 +108,11 @@ export function handleNewProtocol(event: CreatedEvent): void {
     }
   }
 
-  StakingContractTemplate.create(event.params.protocol);
-
   stakingToken.save();
   rewardToken.save();
   protocolStats.save();
   protocol.save();
+
+  // create a template to add to indexing
+  StakingContractTemplate.create(event.params.protocol);
 }
